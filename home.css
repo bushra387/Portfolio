@@ -1,0 +1,320 @@
+
+:root {
+    --color-dark-blue: #0f2027;       
+    --color-medium-blue: #203a43;      
+    --color-cyan: #00bcd4;             
+    --color-purple: #673ab7;           
+    --color-white: #ffffff;
+    --color-text-dark: #333;           
+    --color-text-light: #e0e0e0;       
+    --color-light-gray: #f0f4f8;     
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: var(--color-dark-blue);
+    overflow: hidden; 
+}
+
+p {
+    line-height: 1.6;
+}
+.highlight { 
+    color: var(--color-purple); 
+    font-weight: bold;
+}
+.highlight-cyan {
+    color: var(--color-cyan);
+    font-weight: bold;
+}
+.highlight-name {
+    color: rgb(20, 151, 199);
+    font-weight: bold;
+}
+
+/* ------------------- NEW: SPLIT SCREEN LAYOUT ------------------- */
+.main-content-wrapper.full-screen-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden; 
+    z-index: 10;
+}
+
+/* 1. LEFT SIDEBAR PANEL */
+.sidebar-panel {
+    width: 280px; 
+    min-width: 280px;
+    height: 100%;
+    background-color: var(--color-dark-blue); 
+    border-right: 2px solid var(--color-medium-blue);
+    padding: 30px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    position: relative;
+    z-index: 100; 
+}
+.sidebar-profile {
+    text-align: center;
+    color: var(--color-white);
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.sidebar-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--color-cyan);
+    margin-bottom: 10px;
+    transition: transform 0.4s ease-out;
+}
+.sidebar-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--color-cyan);
+}
+.sidebar-panel h2 {
+    font-size: 1.5em;
+    color: var(--color-white);
+    margin: 5px 0 0 0;
+}
+.sidebar-panel p {
+    color: var(--color-text-light);
+    font-size: 0.9em;
+    margin: 0;
+}
+.sidebar-nav ul {
+    list-style: none;
+    padding: 30px 0;
+    margin: 0;
+    text-align: left;
+}
+.sidebar-nav a {
+    display: block;
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 10px 15px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+.sidebar-nav a:hover,
+.sidebar-nav a.active-link {
+    color: var(--color-cyan);
+    border-left: 4px solid var(--color-cyan);
+    padding-left: 20px;
+}
+.sidebar-social {
+    padding-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* 2. RIGHT HERO PANEL */
+.hero-panel {
+    flex-grow: 1; 
+    background-color: var(--color-medium-blue); 
+    /* Centering the content */
+    display: flex;
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+    
+    position: relative;
+    overflow: hidden; 
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.hero-text-content {
+    z-index: 2;
+    text-align: left;
+    max-width: 700px;
+    margin-left: 50px; /* Adjusting position relative to sidebar */
+}
+
+/* Home Page Greeting Animation (FIXED) */
+.intro-greeting {
+    font-size: 5em;
+    line-height: 1.1;
+    color: var(--color-white); /* Ensures text is visible */
+    font-weight: bold;
+    margin: 0 0 20px 0;
+}
+
+.intro-greeting .fade-in-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: wordSlideIn 0.8s ease-out forwards;
+}
+.intro-greeting .fade-in-word:nth-child(1) { animation-delay: 0.5s; }
+.intro-greeting .fade-in-word:nth-child(2) { animation-delay: 0.7s; }
+.intro-greeting .fade-in-word:nth-child(3) { animation-delay: 0.9s; }
+.intro-greeting .fade-in-word:nth-child(4) { animation-delay: 1.1s; display: block;} 
+
+@keyframes wordSlideIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.profession-line {
+    font-weight: 300;
+}
+
+.profession-tag {
+    color: var(--color-text-light); 
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+/* Decorative Code Snippets & Scroll Indicator */
+.decorative-code {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.1); 
+    font-family: monospace;
+    font-size: 1.5em;
+    pointer-events: none;
+    z-index: 1;
+}
+.top-left { top: 20px; left: 20px; }
+.bottom-right { bottom: 20px; right: 20px; }
+.scroll-indicator {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    color: var(--color-text-light);
+    font-size: 0.9em;
+    text-align: center;
+    transform: rotate(90deg); 
+    transform-origin: bottom right; 
+}
+
+
+/* ------------------- CTA BUTTON STYLES ------------------- */
+.cta-button {
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+.cta-button.contact-me-style {
+    background-color: transparent;
+    border: 2px solid var(--color-cyan);
+    color: var(--color-cyan);
+    padding: 15px 30px;
+    font-size: 1.1em;
+    text-transform: uppercase;
+}
+.cta-button.contact-me-style:hover {
+    background-color: var(--color-cyan);
+    color: var(--color-dark-blue);
+    transform: scale(1.05);
+}
+
+
+/* ------------------- GENERAL CONTENT PAGE STYLES (for Skills/Projects/About) ------------------- */
+
+/* The Content Card wrapper for pages other than Home */
+.main-content-wrapper .fade-in {
+    position: relative; 
+    z-index: 10;
+    width: 90%;
+    max-width: 1000px;
+    padding: 40px;
+    background-color: var(--color-dark-blue); 
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    opacity: 0; 
+    animation: fadeIn 1.5s ease-out 0.5s forwards; 
+    margin: 50px auto; 
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Typewriter Heading (for Skills/Projects Pages) */
+.content-title { 
+    color: var(--color-white); 
+    font-size: 2.8em; 
+    text-align: center;
+    margin: 0 auto 20px auto;
+    padding-bottom: 10px;
+    position: relative; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    border-right: 3px solid var(--color-cyan); 
+    animation: 
+        typewriter 2.5s steps(22, end) forwards, 
+        blinkTextCursor .75s step-end infinite; 
+    width: 0; 
+    max-width: 100%;
+    display: block; 
+}
+@keyframes typewriter { from { width: 0; } to { width: 100%; } }
+@keyframes blinkTextCursor { from, to { border-color: transparent } 50% { border-color: var(--color-cyan); } }
+
+/* Projects/Skills Text/Table Colors */
+.fade-in p, .fade-in td {
+    color: var(--color-text-light);
+}
+
+/* ------------------- BUBBLE ANIMATION ------------------- */
+.background-animation {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: none; 
+    z-index: 1;
+}
+.background-animation.bubble-animation-only {
+    left: 280px; 
+    width: calc(100% - 280px); 
+    z-index: 0; 
+}
+.bubble {
+    position: absolute;
+    display: block;
+    bottom: -150px;
+    background: rgba(0, 188, 212, 0.15); 
+    border-radius: 50%;
+    animation: bubbleMove 25s linear infinite;
+}
+@keyframes bubbleMove {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+}
+.bubble.x1 { left: 10%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 30s; }
+.bubble.x2 { left: 20%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 18s; background-color: rgba(103, 58, 183, 0.15); }
+.bubble.x3 { left: 35%; width: 50px; height: 50px; animation-delay: 4s; animation-duration: 12s; }
+.bubble.x4 { left: 50%; width: 80px; height: 80px; animation-delay: 0s; animation-duration: 24s; background-color: rgba(103, 58, 183, 0.15); }
+.bubble.x5 { left: 65%; width: 35px; height: 35px; animation-delay: 5s; animation-duration: 20s; }
+.bubble.x6 { left: 75%; width: 90px; height: 90px; animation-delay: 3s; animation-duration: 17s; }
+.bubble.x7 { left: 85%; width: 25px; height: 25px; animation-delay: 7s; animation-duration: 21s; background-color: rgba(103, 58, 183, 0.15); }
+.bubble.x8 { left: 5%; width: 15px; height: 15px; animation-delay: 1s; animation-duration: 14s; }
+.bubble.x9 { left: 45%; width: 65px; height: 65px; animation-delay: 6s; animation-duration: 19s; background-color: rgba(103, 58, 183, 0.15); }
+.bubble.x10 { left: 90%; width: 45px; height: 45px; animation-delay: 8s; animation-duration: 16s; }
+
+
+/* ------------------- OTHER ELEMENTS ------------------- */
+.logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px; 
+    transition: transform 0.4s ease-out;
+    vertical-align: middle;
+}
+.logo:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    transform: scale(1.2);
+}

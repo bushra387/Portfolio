@@ -1,0 +1,277 @@
+
+/* -------------------------------------- */
+:root {
+    --color-dark-blue: #0f2027;        
+    --color-medium-blue: #203a43;      
+    --color-cyan: #00bcd4;              
+    --color-purple: #673ab7;           
+    --color-white: #ffffff;
+    --color-text-dark: #333;          
+    --color-text-light: #e0e0e0;       
+    --color-light-gray: #f0f4f8; 
+    --color-light-gray: #4980b7;       
+}
+
+.page-header {
+    width: 100%;
+    height: 60px;
+    ; 
+    padding: 5px 40px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between; 
+    align-items: right;
+    position: sticky; 
+    top: 0;
+    z-index: 50; 
+}
+.portfolio-title {
+    color: var(--color-cyan);
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+}
+.horizontal-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+}
+.horizontal-nav a {
+    color: var(--color-text-light); /* Light text on dark bar */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.horizontal-nav a:hover {
+    color: var(--color-cyan);
+}
+/* ------------------- BASE STYLES & LAYOUT ------------------- */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    /* Use the dark-blue base, but allow scroll for content pages like Projects */
+    overflow-x: hidden; 
+    overflow-y: auto; 
+    background: var(--color-dark-blue); 
+}
+
+/* ------------------- BACKGROUND ANIMATION (Bubbles) ------------------- */
+.background-animation {
+    position: fixed; /* Use fixed so bubbles don't scroll with content */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    background: linear-gradient(-45deg, var(--color-dark-blue), var(--color-medium-blue), #2c5364, #1a2a6c);
+    z-index: 1;
+}
+
+.bubble {
+    position: absolute;
+    display: block;
+    bottom: -150px;
+    background: rgba(0, 188, 212, 0.15); /* Semi-transparent Cyan */
+    border-radius: 50%;
+    animation: bubbleMove 25s linear infinite;
+}
+
+@keyframes bubbleMove {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+}
+
+/* Bubble sizes and timing (x1 to x10) - Using the last provided configuration */
+.bubble.x1 { left: 10%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 30s; }
+.bubble.x2 { left: 20%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 18s; background-color: rgba(103, 58, 183, 0.15); }
+.bubble.x3 { left: 35%; width: 50px; height: 50px; animation-delay: 4s; animation-duration: 12s; }
+.bubble.x4 { left: 50%; width: 80px; height: 80px; animation-delay: 0s; animation-duration: 24s; background-color: rgba(103, 58, 183, 0.15); }
+.bubble.x5 { left: 65%; width: 35px; height: 35px; animation-delay: 5s; animation-duration: 20s; }
+.bubble.x6 { left: 75%; width: 90px; height: 90px; animation-delay: 3s; animation-duration: 17s; }
+.bubble.x7 { left: 85%; width: 25px; height: 25px; animation-delay: 7s; animation-duration: 21s; background-color: rgba(103, 58, 183, 0.15); }
+.bubble.x8 { left: 5%; width: 15px; height: 15px; animation-delay: 1s; animation-duration: 14s; }
+.bubble.x9 { left: 45%; width: 65px; height: 65px; animation-delay: 6s; animation-duration: 19s; background-color: rgba(103, 58, 183, 0.15); }
+.bubble.x10 { left: 90%; width: 45px; height: 45px; animation-delay: 8s; animation-duration: 16s; }
+
+
+
+.main-content-wrapper {
+    position: relative; 
+    z-index: 10;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+   
+}
+
+
+.fade-in {
+    width: 90%;
+    max-width: 1000px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.95); 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    opacity: 0; 
+    animation: fadeIn 1.5s ease-out 0.5s forwards; 
+    margin: 50px auto; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+h1 { 
+    color: var(--color-medium-blue);
+    font-size: 2.8em; 
+    text-align: center;
+    margin: 0 auto 20px auto; 
+    padding-bottom: 10px;
+    position: relative; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    border-right: 3px solid var(--color-cyan); 
+    
+    animation: 
+        typewriter 2.5s steps(22, end) forwards, 
+        blinkTextCursor .75s step-end infinite; 
+    width: 0; 
+    max-width: 100%;
+    display: block; 
+}
+
+@keyframes typewriter { from { width: 0; } to { width: 100%; } }
+@keyframes blinkTextCursor { from, to { border-color: transparent } 50% { border-color: var(--color-cyan); } }
+
+h2 { 
+    color: var(--color-medium-blue);
+    font-size: 3em;
+    margin: 0 0 10px 0;
+}
+.highlight { 
+    color: var(--color-purple); 
+    font-weight: bold;
+}
+p {
+    color: var(--color-text-dark);
+    line-height: 1.6;
+}
+hr {
+    border: none;
+    height: 3px;
+    background-color: var(--color-cyan);
+    width: 50%;
+    margin: 15px auto 30px auto;
+    opacity: 0; 
+    animation: fadeIn 1s ease-out 2.5s forwards; 
+}
+
+.project {
+    background-color: var(--color-white); 
+    border-left: 5px solid var(--color-purple); 
+    padding: 20px 25px;
+    margin-bottom: 30px; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.project h3 {
+    color: var(--color-cyan);
+    margin-top: 0;
+    font-size: 1.5em;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+nav a {
+    color: var(--color-text-light); /* Light color for dark background */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    padding-bottom: 5px;
+}
+nav a:hover {
+    color: var(--color-cyan);
+    border-bottom: 2px solid var(--color-cyan);
+}
+
+
+.round-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--color-cyan);
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+    margin-bottom: 20px;
+}
+.round-image:hover {
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.7); /* Cyan glow */
+    transform: scale(1.05);
+}
+.logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px; 
+    transition: transform 0.4s ease-out;
+    vertical-align: middle;
+}
+.logo:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    transform: scale(1.2);
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: rgb(248, 248, 248); 
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+table th {
+    color: rgb(253, 250, 250);
+    background-color: rgb(70, 99, 157); /* Cyan header row */
+    padding: 12px;
+    
+    transition: all;
+
+}
+table td {
+    color:rgb(18, 17, 17);
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 249, 249, 0.1);
+    text-decoration: underline rgb(188, 187, 180);
+}
+/* The following styles were redundant or used non-standard syntax, and are replaced by the above */
+/* ul { color: rgb(8, 97, 27); size: 130px; } */ 
+/* img { position:center; } */
